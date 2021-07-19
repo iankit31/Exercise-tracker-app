@@ -3,7 +3,7 @@ let Exercise = require('../models/exercise.model');
 
 router.route('/').get((req, res) => {
   User.find()
-    .then(exercise => res.json(exercise))
+    .then(exercise => res.json(exercises))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
@@ -19,6 +19,10 @@ router.route('/add').post((req, res) => {
     duration,
     date,
   });
-});
+
+  newExercise.save()
+  .then(exercise => res.json('Exercise added !!'))
+  .catch(err => res.status(400).json('Error: ' + err));
+}); 
 
 module.exports = router;
