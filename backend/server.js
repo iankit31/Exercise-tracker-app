@@ -11,19 +11,19 @@ app.use(cors());
 app.use(express.json());
 
 const uri = process.env.ATLAS_URI;
-mongoose.connect(uri,{ useNewUrlParser: true, useCreateIndex: true,useUnifiedTopology: true });
-
+mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true }
+);
 const connection = mongoose.connection;
-connection.once('open', () => { 
-    console.log('Connected to MongoDB.');
-});
+connection.once('open', () => {
+  console.log('http://localhost:5000/');
+})
 
-const exerciseRouter = require('./routes/exercises');
-const userRouter = require('./routes/users')
+const exercisesRouter = require('./routes/exercises');
+const usersRouter = require('./routes/users');
 
-app.use('/exercise', exerciseRouter);
-app.use('/user', userRouter);
+app.use('/exercises', exercisesRouter);
+app.use('/users', usersRouter);
 
 app.listen(port, () => {
-    console.log('http://localhost:5000/');
+    console.log(`Server is running on port: ${port}`);
 });
