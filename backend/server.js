@@ -17,6 +17,13 @@ const connection = mongoose.connection;
 connection.once('open', () => { 
     console.log('Connected to MongoDB.');
 });
+
+const exerciseRouter = require('./routes/exercises');
+const userRouter = require('./routes/users')
+
+app.use('/exercise', exerciseRouter);
+app.use('/user', userRouter);
+
 app.listen(port, () => {
     console.log('http://localhost:5000/');
 });
